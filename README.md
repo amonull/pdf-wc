@@ -2,14 +2,14 @@
 pdf word counter written in perl
 
 # Dependecies
-- CAM::PDF
-- GetOpt::Long
+- `CAM::PDF`
+- `GetOpt::Long`
 
 # How To Install
-Install [dependecies](#Dependecies)
+1. Install [dependecies](#Dependecies)
 
-Copy this repo
+2. Copy this repo
 
-Make main.pl executable
+3. Make main.pl executable
 
-Run main.pl on pdf files
+4. Run main.pl on pdf files
