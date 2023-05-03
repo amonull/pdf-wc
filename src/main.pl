@@ -13,23 +13,13 @@ my $count_lines = 0;
 my $print_help = 0;
 GetOptions( "ignore-pages|i=i{,}" => \@ignore_pages,
             "count-lines|l" => \$count_lines,
-            "help|h" => print_usage() ) or die print_usage();
+            "help|h" => \$print_help ) or die print_usage();
+
+if ($print_help) {
+  print_usage();
+}
 
 my $break_point = $count_lines ? '\n' : ' ';
-
-sub print_usage {
-  print "Usage: \[option\] \[file name(s)\]" . "\n";
-  print "\n";
-  print "Options:\n";
-  print "\t" . "-i, --ignore-pages <num(s)>" . "\n";
-  print "\t\t" . "pages to ignore" . "\n";
-  print "\t" . "-l, --count-lines" . "\n";
-  print "\t\t" . "count lines instead of words" . "\n";
-  print "\t" . "-h, --help" . "\n";
-  print "\t\t" . "shows this" . "\n";
- 
-  exit;
-}
 
 sub count_all_pages($) {
 
@@ -62,9 +52,23 @@ foreach my $pdf_path (@ARGV) {
 
   my $result = count_all_pages($pdf_path);
   if ($result lt 0) {
-    print "$pdf_path could not be read. File most likely not a pdf file. skipping";
+    print "$pdf_path could not be read. File most likely not a pdf file. skipping\n";
     next;
   }
 
   print $result . "\n";
+}
+
+sub print_usage {
+  print "Usage: \[option\] \[file name(s)\]" . "\n";
+  print "\n";
+  print "Options:\n";
+  print "\t" . "-i, --ignore-pages <num(s)>" . "\n";
+  print "\t\t" . "pages to ignore" . "\n";
+  print "\t" . "-l, --count-lines" . "\n";
+  print "\t\t" . "count lines instead of words" . "\n";
+  print "\t" . "-h, --help" . "\n";
+  print "\t\t" . "shows this" . "\n";
+ 
+  exit;
 }
