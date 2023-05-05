@@ -21,7 +21,7 @@ if ($print_help) {
 
 my $break_point = $count_lines ? '\n' : ' ';
 
-sub count_all_pages($) {
+sub count_all_pages {
 
   my $pdf = CAM::PDF->new($_[0]);
 
